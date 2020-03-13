@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateCopiesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('copies', function (Blueprint $table) {
+            $table->string('name');
+            $table->string('value');
+            $table->unsignedBigInteger('language_id')->nullable()->unsigned();
+            $table->foreign('language_id')->references('id')->on('languages');
+            $table->timestamps();
+
+            $table->primary(['name', 'language_id']);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('copies');
+    }
+}

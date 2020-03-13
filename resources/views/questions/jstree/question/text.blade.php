@@ -1,0 +1,1 @@
+{{ $question->trans() }} <a href="{{ route('topics.questions.edit', [$question->topic->id, $question->id]) }}" class="badge badge-primary">@lang('Edit')</a>

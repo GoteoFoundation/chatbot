@@ -1,0 +1,1 @@
+{{ $answer->name }} @if($answer->isUrlAnswer()) <a href="{{ $answer->url }}"><i class="fas fa-fw fa-link"></i></a> @endif

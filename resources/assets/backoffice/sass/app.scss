@@ -1,0 +1,24 @@
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// FontAwesome
+$fa-font-path: "../webfonts";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+
+// Datatables
+@import '~datatables/media/css/jquery.dataTables.css';
+
+// Datatables Bootstrap 4
+@import '~datatables.net-bs4/css/dataTables.bootstrap4.css';
+
+// JStre
+@import '~jstree/dist/themes/default/style.css';
+
+// Select2
+@import '~select2/src/scss/core';
+
+// SB-Admin-2
+@import 'sb-admin-2';

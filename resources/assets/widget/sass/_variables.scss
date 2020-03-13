@@ -1,0 +1,51 @@
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-text: 'Roboto', sans-serif;
+
+// Colors
+$color-teal: #19b4b2;
+$color-teal-light: #cfebeb;
+$color-teal-lighter: #e7f7f7;
+$color-teal-hover: #14918e;
+$color-gray-mid: #666;
+$color-gray-dark: #1a1a1a;
+$color-gray-label: #3b3b3b;
+$color-gray-button: #2c2c2c;
+$color-white: #fff;
+$color-white-semitransparent: #555;
+$color-gray-gradient-in: #031919;
+$color-gray-gradient-out: #484848;
+
+// Mixins and functions
+/*
+  LG: Large devices (large desktops, 1200px and up) - not used
+  MD: Medium devices (desktops, 992px and up)
+  SM: Small devices (tablets, 768px and up)
+  XS: Xtrasmall devices (smartphones, under 768px)
+*/
+@mixin breakpoint($point) {
+	@if $point == desktop {
+		@media only screen and (min-width: 992px) { @content; }
+	}
+	@else if $point == tablet {
+		@media only screen and (min-width: 768px) and (max-width: 991px) { @content; }
+	}
+	@else if $point == desktoptablet {
+		@media only screen and (min-width: 768px) { @content; }
+	}
+	@else if $point == tabletmobile {
+		@media only screen and (max-width: 991px) { @content; }
+	}
+	@else if $point == mobile {
+		@media only screen and (max-width: 767px) { @content; }
+	}
+}
+
+@mixin calc($property, $expression) {
+	#{$property}: -moz-calc(#{$expression});
+	#{$property}: -o-calc(#{$expression});
+	#{$property}: -webkit-calc(#{$expression});
+	#{$property}: calc(#{$expression});
+}

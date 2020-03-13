@@ -1,0 +1,314 @@
+/* Login */
+
+.navbar {
+  .navbar-brand {
+    color: $white;
+    font-weight: 700;
+    line-height: 1em;
+    text-transform: uppercase;
+
+    &:hover {
+      color: $white;
+    }
+
+    img {
+      width: 25px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+  }
+
+  a.nav-link {
+    color: rgba(255, 255, 255, 0.8);
+
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
+.btn-link {
+  color: $goteo-primary;
+
+  &:hover {
+    color: $goteo-primary-hover;
+  }
+}
+
+
+/* App */
+
+.ui-state-highlight {
+  border: 1px solid #dad55e;
+  background: #fffa90;
+  color: #777620;
+  height: 50px;
+  margin-bottom: 24px;
+}
+
+.goteo-primary-bg {
+  background-color: $goteo-primary;
+}
+
+.btn-primary {
+  background: $goteo-main-button;
+  border: none;
+  border-radius: 0.25rem !important;
+  transition: none;
+
+  &:hover {
+    background: $goteo-main-button-hover;
+  }
+}
+
+.btn-secondary {
+  background: $goteo-primary;
+  border: none;
+  border-radius: 0.25rem !important;
+  transition: none;
+
+  &:hover {
+    background: $goteo-primary-hover;
+  }
+}
+
+.btn-outline-secondary {
+  transition: none;
+}
+
+.btn-danger {
+  min-height: 38px;
+  background: $gray-500;
+  border: none;
+  transition: none;
+
+  &:hover {
+    background: $gray-600;
+  }
+}
+
+.display-3 {
+  font-size: 36px;
+  font-weight: 700;
+  color: $gray-900;
+  margin-top: 24px;
+
+  em {
+    font-style: normal;
+    color: $gray-700;
+  }
+}
+
+.display-6 {
+  font-size: 24px;
+  font-weight: 700;
+  color: $gray-900;
+}
+
+input.form-control {
+  border-radius: 4px;
+}
+
+table.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    .sorting,
+    .sorting_asc,
+    .sorting_desc {
+      &::after,
+      &::before {
+        display: none;
+      }
+    }
+
+    th,
+    td {
+      padding: 0.75rem;
+    }
+  }
+
+  .actions-group {
+    white-space: nowrap;
+  }
+
+  .btn {
+    flex: none;
+  }
+}
+
+#questions_filter {
+  label {
+    color: #333;
+    font-weight: normal;
+    text-align: left;
+    white-space: nowrap;
+  }
+}
+
+.dataTables_wrapper .dataTables_paginate {
+  .paginate_button,
+  .paginate_button.disabled {
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+
+    &:hover {
+      background: none;
+      border: none;
+    }
+  }
+}
+
+div.dataTables_wrapper div.dataTables_processing {
+  background: $gray-900;
+  color: $white;
+  height: auto;
+  opacity: 0.7;
+  z-index: 10;
+}
+
+.page-item .page-link {
+  background: none;
+  color: $goteo-primary;
+  border: none;
+
+  &:hover {
+    color: $goteo-primary-hover;
+    text-decoration: underline;
+  }
+}
+
+.page-item.active .page-link {
+  background: none;
+  color: $gray-800;
+  font-weight: 700;
+}
+
+.page-item.disabled .page-link {
+  background: none;
+  border: none;
+}
+
+a.badge-primary {
+  background-color: $goteo-primary;
+
+  &:hover {
+    background-color: $goteo-primary-hover;
+  }
+}
+
+span.spacer {
+  display: inline-block;
+  width: 97px;
+}
+
+.alert-danger ul {
+  padding: 0;
+  margin: 0;
+
+  li {
+    list-style: none outside none;
+
+    &::before {
+      font-weight: 900;
+      content: '\f071';
+      font-family: 'Font Awesome 5 Free';
+      margin-right: 0.5rem;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.alert-success {
+  &::before {
+    font-weight: 900;
+    content: '\f058';
+    font-family: 'Font Awesome 5 Free';
+    margin-right: 0.5rem;
+  }
+}
+
+.alert-info {
+  color: $gray-700;
+  border-radius: 0;
+  border: none;
+  background: none;
+  padding: 0;
+
+  &::before {
+    font-weight: 900;
+    content: '\f05a';
+    font-family: 'Font Awesome 5 Free';
+    margin-right: 0.5rem;
+  }
+}
+
+.tabs-langs .nav-tabs a {
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 8px;
+}
+
+.fa-grip-lines {
+  cursor: ns-resize;
+}
+
+.select2 {
+  width: 100%;
+  max-width: 100%;
+}
+
+.select2-questions,
+.select2-topics {
+  width: 100%;
+}
+
+.select2-selection__rendered {
+    line-height: 34px !important;
+}
+
+.select2-container .select2-selection--single {
+    height: 38px;
+    border: 1px solid #ced4da;
+}
+
+.select2-selection__arrow {
+    height: 37px !important;
+}
+
+.repeater-remove-btn {
+  button {
+    min-width: 38px;
+  }
+}
+
+.answer_type_option_question {
+  button {
+    min-height: 38px;
+  }
+}
+
+label.radiobutton {
+  color: $gray-700;
+  font-size: 14px;
+  vertical-align: middle;
+  margin: 0 0 0 10px;
+}
+
+.btn {
+  .spinner-border{
+    display: none;
+  }
+
+  &.loading {
+    .spinner-border {
+      display: inline-block;
+    }
+  }
+}
