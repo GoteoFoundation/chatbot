@@ -18,7 +18,7 @@
     <h1 class="display-3">@lang('Languages')</h1>
 
     <div class="my-4 clearfix">
-      <a href="{{ route('languages.create') }}" class="btn btn-primary float-right">@lang('Add Language')</a>
+      <a href="{{ route('languages.create') }}" class="btn btn-primary float-right">@lang('Add language')</a>
     </div>
 
     <table class="table table-striped" id="languages">
