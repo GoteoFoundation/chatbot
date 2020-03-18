@@ -2,6 +2,8 @@
 
 This project allows the inclusion in an HTML page of a standalone help widget that allows visitors to navigate through a flow of questions and answers interactivelly, in a way and with a look and feel that resembles an instant messaging application. Questions flows are categorized in topics that are shown in different HTML pages.
 
+[![Backed by Goteo Foundation](docs/developers/assets/foundation-logo.png)](https://foundation.goteo.org) &nbsp; [![Created by  Platoniq Sistema Cultural](docs/developers/assets/platoniq-logo.png)](http://platoniq.net)
+
 ## Built with
 
 The framework used is [Laravel](https://laravel.com/). Version is 6.15.0 (always updated information about the version is at `vendor/laravel/framework/src/Illuminate/Foundation/Application.php`). Documentation available at [https://laravel.com/docs/6.x](https://laravel.com/docs/6.x).
@@ -9,6 +11,67 @@ The framework used is [Laravel](https://laravel.com/). Version is 6.15.0 (always
 ## Getting Started
 
 These are the instructions for deploying the project.
+
+### Quick start with Docker for Development
+
+#### Initial setup
+
+Skip this section if you've done this part already.
+In a new installation run these commands (before `docker-compose up`):
+
+```
+docker-compose build
+docker-compose run --rm composer install
+docker-compose run --rm artisan migrate
+docker-compose run --rm artisan db:seed
+docker-compose run --rm npm install
+docker-compose run --rm npm dev
+sudo chmod 777 -R storage/
+sudo chmod 777 -R bootstrap/cache/
+```
+
+Run `composer install` everytime `composer.lock` changes (on repo updates).
+
+Create the first admin user:
+
+```
+docker-compose run artisan register:admin
+```
+
+Ready to start the environment 👇
+
+### Starting DEV environment
+
+Just get the docker stack up by executing (use the flag `--build` to force a rebuild):
+
+```
+docker-compose up
+```
+
+Point your browser to http://localhost:8080
+
+Checkout outgoing emails (maildev smtp catch-all server) at http://localhost:8025
+
+### How to execute common commands in Docker:
+
+**Composer:**
+
+```
+docker-compose run --rm composer update
+```
+
+**npm:**
+
+```
+docker-compose run --rm npm run dev
+```
+
+**artisan:**
+
+```
+docker-compose run --rm artisan migrate
+docker-compose run --rm artisan db:seed
+```
 
 ### Deployment
 
@@ -177,3 +240,8 @@ Example of the overall widget code without loading jQuery nor the Roboto font:
 	(window.goteoHelpWidget=window.goteoHelpWidget||{}).load("https://widget.goteo.org", "es", 1, false);
 </script>
 ```
+
+
+## License
+
+The code licensed here under the GNU Affero General Public License, version 3 AGPL-3.0. 
