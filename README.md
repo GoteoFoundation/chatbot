@@ -2,7 +2,7 @@
 
 This project allows the inclusion in an HTML page of a standalone help widget that allows visitors to navigate through a flow of questions and answers interactivelly, in a way and with a look and feel that resembles an instant messaging application. Questions flows are categorized in topics that are shown in different HTML pages.
 
-[![Backed by Goteo Foundation](docs/developers/assets/foundation-logo.png)](https://foundation.goteo.org) &nbsp; [![Created by  Platoniq Sistema Cultural](docs/developers/assets/platoniq-logo.png)](http://platoniq.net)
+[![Created by Goteo Foundation](resources/assets/backoffice/images/foundation-logo.png)](https://foundation.goteo.org) &nbsp; [![With the support of Platoniq Sistema Cultural](resources/assets/backoffice/images/platoniq-logo.png)](http://platoniq.net)
 
 ## Built with
 
