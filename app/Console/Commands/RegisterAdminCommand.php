@@ -14,7 +14,7 @@ class RegisterAdminCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'register:admin';
+    protected $signature = 'register:admin {--N|name=} {--E|email=} {--P|password=}';
 
     /**
      * The console command description.
@@ -103,12 +103,17 @@ class RegisterAdminCommand extends Command
      */
     private function askInfo()
     {
-        $details['name'] = $this->ask('Name');
-        $details['email'] = $this->ask('Email');
+        $details['name'] = $this->obtain('name', 'Name');
+        $details['email'] = $this->obtain('email', 'Email');
 
         while (!filter_var($details['email'], FILTER_VALIDATE_EMAIL)) {
 
-            $details['email'] = $this->ask('Email');
+            $details['email'] = $this->obtain('email', 'This email seems invalid, please try again');
+        }
+
+        if($details['password'] = $this->option('password')) {
+
+            return $details;
         }
 
         $details['password'] = $this->secret('Password');
@@ -116,11 +121,21 @@ class RegisterAdminCommand extends Command
 
         while (!$this->isMatch($details['password'], $details['confirm_password'])) {
 
-            $details['password'] = $this->secret('Password');
+            $details['password'] = $this->secret("Passwords don't match, please try again");
             $details['confirm_password'] = $this->secret('Confirm password');
         }
 
         return $details;
+    }
+
+    /**
+     * Either obtains the option from the command line or asks interactively
+     *
+     * @param  string $option option name
+     * @return string           the option obtained
+     */
+    private function obtain($option, $text=null) {
+        return $this->option($option) ?: $this->ask($text ?: $option);
     }
 
     /**

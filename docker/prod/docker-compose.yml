@@ -31,9 +31,9 @@ services:
     env_file:
       - .env.prod
     environment:
-      - MYSQL_DATABASE="${DB_DATABASE}"
-      - MYSQL_USER="${DB_USERNAME}"
-      - MYSQL_PASSWORD="${DB_PASSWORD}"
+      - MYSQL_DATABASE="${DB_DATABASE:-}"
+      - MYSQL_USER="${DB_USERNAME:-}"
+      - MYSQL_PASSWORD="${DB_PASSWORD:-}"
       - MYSQL_RANDOM_ROOT_PASSWORD=1
       - SERVICE_TAGS=prod
       - SERVICE_NAME=mysql

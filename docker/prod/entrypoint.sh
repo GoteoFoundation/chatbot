@@ -7,12 +7,9 @@ if [ $? -ne 0 ]; then
     # try to migrate if unsuccessful
     artisan migrate --force
     artisan db:seed
+    artisan run --rm artisan -n register:admin --name=$ADMIN_NAME --email=$ADMIN_EMAIL --password=$ADMIN_PASSWORD
 fi
 
-# check if admin user exists
-if [ -z "$APP_KEY" ]; then
-    artisan key:generate --show
-fi
 # force user owner for temp folders
 chown www-data:www-data -R /var/www/html/
 
