@@ -19,13 +19,17 @@ These are the instructions for deploying the project.
 Skip this section if you've done this part already.
 In a new installation run these commands (before `docker-compose up`):
 
+**Note:** 
+- some of the step may fail at the first time, just try again.
+- You may have to use `sudo` in front of the `docker-compose` command.
+
 ```
 docker-compose build
 docker-compose run --rm composer install
 docker-compose run --rm artisan migrate
 docker-compose run --rm artisan db:seed
 docker-compose run --rm npm install
-docker-compose run --rm npm dev
+docker-compose run --rm npm run dev
 sudo chmod 777 -R storage/
 sudo chmod 777 -R bootstrap/cache/
 ```
