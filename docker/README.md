@@ -45,7 +45,7 @@ rm -r docker/src/*
 git archive master | tar -x -C docker/src
 ```
 
-Buld docker:
+Build docker:
 
 ```
 sudo docker build . -t goteo/chatbot:VERSION -f docker/prod/Dockerfile
