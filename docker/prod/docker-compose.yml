@@ -28,33 +28,32 @@ services:
     restart: unless-stopped
     volumes:
       - mysql-data:/var/lib/mysql
-    env_file:
-      - .env.prod
     environment:
-      - MYSQL_DATABASE="${DB_DATABASE:-}"
-      - MYSQL_USER="${DB_USERNAME:-}"
-      - MYSQL_PASSWORD="${DB_PASSWORD:-}"
+      - MYSQL_DATABASE=chatbot
+      - MYSQL_USER=chatbot
+      - MYSQL_PASSWORD=change-me
       - MYSQL_RANDOM_ROOT_PASSWORD=1
       - SERVICE_TAGS=prod
       - SERVICE_NAME=mysql
-
     networks:
       - backend
 
   chatbot:
-    image: goteo/chatbot:0.3
+    image: goteo/chatbot:0.5
+    restart: on-failure
     container_name: chatbot
     depends_on:
       - mysql
     volumes:
       - app-data:/var/www/html
-    #   - ./entrypoint.sh:/entrypoint
-    # entrypoint: /entrypoint
-    # command: php-fpm
     env_file:
       - .env.prod
     environment:
-      - LOG_CHANNEL=stderr
+      - ADMIN_NAME="Chatbot Admin"
+      - ADMIN_EMAIL=admin@example.org
+      - ADMIN_PASSWORD=chatbot123456
+      # unescape if you won't to automatically setup the database
+      # - SKIP_CONFIGURATION=1
     networks:
       - backend
 

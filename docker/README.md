@@ -15,7 +15,8 @@ Use the provided `docker/prod/docker-compose.yml` as an example.
 The first time the container runs it will create the required database and the first admin user. By default, the user is `admin@example.org` with the password `chatbot123456`. You can change this by overriding the environment variables:
 
 ```
-ADMIN_USER=admin@example.org
+ADMIN_NAME="Chatbot admin"
+ADMIN_EMAIL=admin@example.org
 ADMIN_PASSWORD=chatbot123456
 ```
 

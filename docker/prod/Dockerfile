@@ -18,7 +18,7 @@ RUN { \
         echo 'opcache.fast_shutdown=1'; \
     } > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
-RUN apk add --update npm && rm -rf /var/cache/apk/*
+RUN apk add --update --no-cache npm
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
@@ -40,7 +40,9 @@ RUN npm run prod
 
 EXPOSE 9000
 
+COPY docker/wait-for /usr/local/bin/wait-for
 COPY docker/prod/entrypoint.sh /usr/local/bin/chatbot-entrypoint
+
 ENTRYPOINT ["chatbot-entrypoint"]
 CMD ["php-fpm"]
 
