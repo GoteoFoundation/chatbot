@@ -20,11 +20,10 @@ if [ -z "$SKIP_CONFIGURATION" ]; then
     fi
 fi
 
-set -e
-
 # force user owner for temp folders
 chown www-data:www-data -R /var/www/html/
 
+set -e
 # first arg is `-f` or `--some-option`
 if [ "${1#-}" != "$1" ]; then
     set -- php-fpm "$@"
