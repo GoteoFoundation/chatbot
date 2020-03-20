@@ -1,0 +1,60 @@
+version: "3"
+
+networks:
+  backend:
+
+volumes:
+  mysql-data:
+  app-data:
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - app-data:/var/www/html
+      - ../nginx/prod.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - chatbot
+      - mysql
+    networks:
+      - backend
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    restart: unless-stopped
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=chatbot
+      - MYSQL_USER=chatbot
+      - MYSQL_PASSWORD=change-me
+      - MYSQL_RANDOM_ROOT_PASSWORD=1
+      - SERVICE_TAGS=prod
+      - SERVICE_NAME=mysql
+    networks:
+      - backend
+
+  chatbot:
+    image: goteo/chatbot:latest
+    restart: on-failure
+    container_name: chatbot
+    depends_on:
+      - mysql
+    volumes:
+      - app-data:/var/www/html
+    env_file:
+      - .env.prod
+    environment:
+      - ADMIN_NAME="Chatbot Admin"
+      - ADMIN_EMAIL=admin@example.org
+      - ADMIN_PASSWORD=chatbot123456
+      # unescape if you won't to automatically setup the database
+      # - SKIP_CONFIGURATION=1
+    networks:
+      - backend
+
+

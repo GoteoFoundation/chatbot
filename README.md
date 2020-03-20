@@ -1,6 +1,6 @@
 # Goteo Help Widget
 
-This project allows the inclusion in an HTML page of a standalone help widget that allows visitors to navigate through a flow of questions and answers interactivelly, in a way and with a look and feel that resembles an instant messaging application. Questions flows are categorized in topics that are shown in different HTML pages.
+This project allows the inclusion in an HTML page of a standalone help widget that allows visitors to navigate through a flow of questions and answers interactively, in a way and with a look and feel that resembles an instant messaging application. Questions flows are categorized in topics that are shown in different HTML pages.
 
 [![Created by Goteo Foundation](resources/assets/backoffice/images/foundation-logo.png)](https://foundation.goteo.org) &nbsp; [![With the support of Platoniq Sistema Cultural](resources/assets/backoffice/images/platoniq-logo.png)](http://platoniq.net)
 
@@ -42,7 +42,7 @@ Create the first admin user:
 docker-compose run artisan register:admin
 ```
 
-Ready to start the environment 👇
+Ready to start the environment: 👇
 
 ### Starting DEV environment
 
@@ -169,7 +169,7 @@ Name, email and password will be asked in order to create the corresponding admi
 
 ##### Additional seeding (for testing purposes)
 
-The seeding behavior is different depending on the environment configured in the .env file. If it is set to `production`, only initial languages are created.
+The seeding behaviour is different depending on the environment configured in the .env file. If it is set to `production`, only initial languages are created.
 
 But, if run the same command with `APP_ENV` set to any another environment, the database gets seeded with fake automatically generated topics, questions and answers for testing purposes.
 
