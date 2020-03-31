@@ -18,6 +18,25 @@ $(function(){
 		}
 	}
 
+	var updateChangeAnswerTypeEvent = function(obj) {
+		obj.find('input.answer_type').click(function() {
+			$(this).parents('.card-body').find('div[class*="answer_type_option_"]').hide();
+			$(this).parents('.card-body').find('.answer_type_option_' + 	$(this).val()).show();
+
+			var firstUrlLangInput = $(this).parents('.card-body').find('.answer_type_option_url input[type=url]').first();
+			var firstQuestionLangSelect = $(this).parents('.card-body').find('.answer_type_option_question select').first();
+
+			if(	$(this).val() === 'url') {
+				firstUrlLangInput.prop('required', 'required');
+				firstQuestionLangSelect.prop('required', '');
+			}
+			else {
+				firstUrlLangInput.prop('required', '');
+				firstQuestionLangSelect.prop('required', 'required');
+			}
+		});
+	};
+
 	var func_repeater = function() {
 		repeaterItemsLastIndex++;
 		attributesToUpdate = ['id', 'href', 'labelledby', 'aria-controls'];
@@ -32,22 +51,7 @@ $(function(){
 			});
 		}
 
-		$(this).find('input.answer_type').click(function() {
-			$(this).parents('.card-body').find('div[class*="answer_type_option_"]').hide();
-			$(this).parents('.card-body').find('.answer_type_option_' + $(this).val()).show();
-
-			var firstUrlLangInput = $(this).parents('.card-body').find('.answer_type_option_url input[type=url]').first();
-			var firstQuestionLangSelect = $(this).parents('.card-body').find('.answer_type_option_question select').first();
-
-			if($(this).val() === 'url') {
-				firstUrlLangInput.prop('required', 'required');
-				firstQuestionLangSelect.prop('required', '');
-			}
-			else {
-				firstUrlLangInput.prop('required', '');
-				firstQuestionLangSelect.prop('required', 'required');
-			}
-		});
+		updateChangeAnswerTypeEvent($(this));
 
 		if ($(this).find('input.answer_type:checked').length == 0) {
 			$(this).find('input.answer_type').first().prop('checked', 'checked');
@@ -106,8 +110,11 @@ $(function(){
 		}
 	}
 
-	// Execute prevention on first loading
+	// Execute prevention on first load
 	updateDeletionAvailability();
+
+	// Control required inputs when changing questions type on first load
+	updateChangeAnswerTypeEvent($('#answers .card-body'));
 
 	// Select 2 init
 

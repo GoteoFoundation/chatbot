@@ -134,7 +134,7 @@
                           <div class="tab-content" id="answers-tabs-tabs-type-content-id1">
                             @foreach($languages as $lang)
                               <div class="tab-pane{{ $lang->is_parent ? ' show active' : '' }}" id="answers-type-{{ $lang->iso_code }}-id1" role="tabpanel" aria-labelledby="answers-tab-type-{{ $lang->iso_code }}-id1">
-                                <input type="text" class="form-control" name="answers[url-{{ $lang->id }}][]" value="{{ old($actual_field . '.' . $lang->id) }}">
+                                <input type="url" class="form-control" name="answers[url-{{ $lang->id }}][]" value="{{ old($actual_field . '.' . $lang->id) }}">
                               </div>
                             @endforeach
                           </div>
@@ -243,7 +243,7 @@
                               <div class="tab-content" id="answers-tabs-tabs-type-content-id{{ $itemsOnPage }}">
                                 @foreach($languages as $lang)
                                   <div class="tab-pane{{ $lang->is_parent ? ' show active' : '' }}" id="answers-type-{{ $lang->iso_code }}-id{{ $itemsOnPage }}" role="tabpanel" aria-labelledby="answers-tab-type-{{ $lang->iso_code }}-id{{ $itemsOnPage }}">
-                                    <input type="text" class="form-control" name="answers[url-{{ $lang->id }}][]" value="{{ $answer['url-' . $lang->id] }}" {{ ($lang->is_parent && ($answer['type'] == 'url')) ? 'required' : '' }}>
+                                    <input type="url" class="form-control" name="answers[url-{{ $lang->id }}][]" value="{{ $answer['url-' . $lang->id] }}" {{ ($lang->is_parent && ($answer['type'] == 'url')) ? 'required' : '' }}>
                                   </div>
                                 @endforeach
                               </div>

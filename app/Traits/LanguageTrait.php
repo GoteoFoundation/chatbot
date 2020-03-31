@@ -72,34 +72,36 @@ trait LanguageTrait
     {
         $parent = $objectLanguageById ? $this->getParentLanguageId() : $this->getParentLanguageIsoCode();
 
-        /**
-         * Create parent language translation
-         */
-        $translation = $this->createTranslation(
-            $parent,
-            $objects[$parent]
-        );
-        $translation->save();
+        if (isset($objects[$parent])) {
+            /**
+             * Create parent language translation
+             */
+            $translation = $this->createTranslation(
+                $parent,
+                $objects[$parent]
+            );
+            $translation->save();
 
-        /**
-         * Unset it from objects
-         */
-        unset($objects[$parent]);
+            /**
+             * Unset it from objects
+             */
+            unset($objects[$parent]);
 
-        /**
-         * And create the other ones based on parent translation
-         */
-        foreach($objects as $code => $name) {
-            if(!empty($name)) {
-                $this->createTranslation(
-                    $code,
-                    $name,
-                    $translation->translation_id
-                )->save();
+            /**
+             * And create the other ones based on parent translation
+             */
+            foreach ($objects as $code => $name) {
+                if (!empty($name)) {
+                    $this->createTranslation(
+                        $code,
+                        $name,
+                        $translation->translation_id
+                    )->save();
+                }
             }
-        }
 
-        return $translation->translation_id;
+            return $translation->translation_id;
+        }
     }
 
     public function updateTranslationTerms($parent, &$objects)
@@ -118,16 +120,16 @@ trait LanguageTrait
         /**
          * Bail early if updating and nothing is found
          */
-        if(is_null($translationId)) {
+        if (is_null($translationId)) {
             return false;
         }
 
         /**
          * Create new translations
          */
-        if(is_array($objects)) {
-            foreach($objects as $languageId => $newTranslation) {
-                if(!empty($newTranslation) && !is_null($translationId)) {
+        if (is_array($objects)) {
+            foreach ($objects as $languageId => $newTranslation) {
+                if (!empty($newTranslation) && !is_null($translationId)) {
                     $this->createTranslation(
                         $languageId,
                         $newTranslation,
@@ -153,11 +155,11 @@ trait LanguageTrait
             return is_null($languageId) ? $translation->isMainTranslation() : $translation->belongedByLanguage($languageId);
         }))->getTerm();
 
-        if($term) {
+        if ($term) {
             return $term;
         }
 
-        if(! ($language = Language::find($languageId)) ) {
+        if (! ($language = Language::find($languageId))) {
             return null;
         }
 
@@ -165,7 +167,7 @@ trait LanguageTrait
             return $translation->belongedByLanguage(optional($language->supportLanguage)->id);
         }))->getTerm();
 
-        if($term) {
+        if ($term) {
             return $term;
         } else {
             return optional($relation->first(function ($translation) {

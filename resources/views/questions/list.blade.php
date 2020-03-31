@@ -61,6 +61,12 @@
   <script>
     goteoData = {
       datatableEndpoint: "{{ route('topics.questions.datatable', $topic->id) }}",
+      questionIndexEndpoint: "{{ route('topics.questions.index', $topic->id) }}",
+      questionStoreEndpoint: "{{ route('topics.questions.store', $topic->id) }}",
+      questionCopyEndpoint: "{{ route('topics.questions.copy', $topic->id) }}",
+      topicsEndpoint: "{{ route('topics.index') }}",
+      topicIndexEndpoint: "{{ route('topics.questions.index', $topic->id) }}",
+      topicId: "{{ $topic->id }}",
       translations: {
         zeroRecords: "@lang('No matching records found')",
         info: "@lang('Page _PAGE_ of _PAGES_')",
@@ -75,7 +81,9 @@
             last: "@lang('Last')",
             next: "@lang('Next')",
             previous: "@lang('Previous')"
-        }
+        },
+        topicSelectPlaceholder: "@lang('Select a topic')",
+        questionSelectPlaceholder: "@lang('Select a question')"
       }
     };
   </script>

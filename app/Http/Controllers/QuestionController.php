@@ -92,7 +92,7 @@ class QuestionController extends Controller
         $filter = $request->get('filter_by');
         $questions = Question::where(['topic_id' => $topic_id]);
 
-        if(!$request->has('order')) {
+        if (!$request->has('order')) {
             $questions = $questions->orderBy('updated_at', 'desc');
         }
 
@@ -516,7 +516,7 @@ class QuestionController extends Controller
      * @param Topic $topic
      * @return integer
      */
-    public function copyQuestion($question, $topic, &$alreadyDoneQuestions = [])
+    public function copyQuestion($question, $topic, &$alreadyDoneQuestions = [], $firstIteration = true)
     {
         // Bail if already copied question
         if (in_array($question->id, array_keys($alreadyDoneQuestions))) {
@@ -527,12 +527,14 @@ class QuestionController extends Controller
             return [$translation->language_id => $translation->getTerm()];
         })->toArray();
 
+        error_log(print_r($topic, true));
+
         $translationId = $this->createTranslationTerms($names, true);
 
         $newQuestion = new Question([
             'question_i18n' => $translationId,
             'topic_id' => $topic->id,
-            'is_parent' => $topic->questions->count() == 0,
+            'is_parent' => $firstIteration && ($topic->questions->count() == 0),
         ]);
         $newQuestion->save();
         $alreadyDoneQuestions[$question->id] = $newQuestion->id;
@@ -563,7 +565,7 @@ class QuestionController extends Controller
             } elseif ($answer->isQuestionAnswer()) {
                 $relatedQuestionId = optional($answer->question)->id;
                 if (!is_null($relatedQuestionId)) {
-                    $relatedQuestionId = $this->copyQuestion(Question::findOrFail($relatedQuestionId), $topic, $alreadyDoneQuestions);
+                    $relatedQuestionId = $this->copyQuestion(Question::findOrFail($relatedQuestionId), $topic, $alreadyDoneQuestions, false);
                 }
                 $data = array_merge($data, [
                     'answer_question_id' => $relatedQuestionId,
